@@ -1,0 +1,98 @@
+﻿body {
+    font-family: Arial, sans-serif; /* Adds a more modern font */
+    background-color: #f4f4f4; /* Light gray background for contrast */
+    padding: 20px; /* Adds some space around the edge of your page */
+}
+
+.button-container {
+    text-align: right;
+    margin-bottom: 20px; /* Adds space below the buttons */
+}
+
+.movie-card {
+    display: flex; /* Makes the container a flexbox container */
+    align-items: center; /* Centers items vertically */
+    gap: 20px; /* Adds a gap between the image and the content */
+    background-color: white; /* White card background for contrast */
+    padding: 20px; /* Adds space inside the card */
+    border-radius: 10px; /* Rounds the card corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Adds a subtle shadow to the card */
+    margin-bottom: 20px; /* Adds space between each card */
+}
+
+.movie-card img {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px; /* Rounds the image corners */
+}
+
+/* movie list style */
+a {
+    margin-top: 2px;
+    text-decoration: none; /* Removes the underline from links */
+    color: #333; /* Dark text color for readability */
+}
+
+    a:hover {
+        /*text-decoration: underline;  Adds underline on hover for links */
+    }
+
+.nav-container {
+    display: flex; /* Makes the container a flexbox container */
+    justify-content: space-between; /* Spaces the items out to either side */
+    margin-bottom: 20px; /* Adds space below the navigation */
+}
+
+.filter-container, .add-movie-container {
+    display: inline-flex; /* Makes the container a flexbox container */
+    gap: 10px; /* Adds a gap between the items */
+}
+
+.btn {
+    padding: 7px 10px; /* Adds space inside the button */
+    border-radius: 5px; /* Rounds the button corners */
+    border: none; /* Removes the default button border */
+    cursor: pointer; /* Changes the cursor on hover */
+}
+
+.btn-primary {
+    background-color: #007BFF; /* Blue color */
+    color: white; /* White text */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* Gray color */
+    color: white; /* White text */
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268; /* Darker gray on hover */
+}
+
+.btn-success {
+    background-color: #28a745; /* Green color */
+    color: white; /* White text */
+}
+
+.btn-success:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Red color */
+    color: white; /* White text */
+}
+
+.btn-danger:hover {
+     background-color: #c82333; /* Darker red on hover */
+}
+
+.movieBtns {
+    display: flex; /* Makes the container a flexbox container */
+    gap: 10px; /* Adds a gap between the buttons */
+}

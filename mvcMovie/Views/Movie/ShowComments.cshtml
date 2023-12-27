@@ -1,0 +1,37 @@
+﻿@model mvcMovie.Models.Movie
+
+<h2>Comments for @Model.Title</h2>
+
+@if (Model.Comments != null && Model.Comments.Any())
+{
+    <div class="existing-comments">
+        @foreach (var comment in Model.Comments)
+        {
+            <div class="comment">
+                <p>@comment.CommentText</p>
+                <small>By: @comment.UserId</small>
+                @if (comment.CanEdit)
+                {
+                    <form method="post" action="@Url.Action("ModifyComment", "Movie")">
+                        <input type="hidden" name="movieId" value="@Model.MovieId" />
+                        <input type="hidden" name="commentId" value="@comment.CommentId" />
+                        <textarea name="modifiedText">@comment.CommentText</textarea>
+                        <button type="submit" class="btn btn-primary">Modify</button>
+                    </form>
+                }
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No comments for this movie.</p>
+}
+
+
+
+<form method="post" action="@Url.Action("AddComment", "Movie")">
+    <input type="hidden" name="movieId" value="@Model.MovieId" />
+    <textarea name="commentText" required></textarea>
+    <button type="submit" class="btn btn-secondary">Add Comment</button>
+</form>

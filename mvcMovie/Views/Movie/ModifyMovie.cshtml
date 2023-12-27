@@ -1,0 +1,66 @@
+﻿@model mvcMovie.Models.MovieViewModel
+
+<form method="post" enctype="multipart/form-data" action="@Url.Action("SaveMovie", "Movie")">
+
+    <!-- Movie Id -->
+    <div class="form-group">
+        <label for="movieId">Movie ID:</label>
+        <input type="text" class="form-control" id="movieId" name="MovieId" value="@Model.MovieId">
+    </div>
+
+    <!-- Title -->
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" class="form-control" id="title" name="Title" required value="@Model.Title">
+    </div>
+
+    <!-- Genre -->
+    <div class="form-group">
+        <label for="genre">Genre:</label>
+        <input type="text" class="form-control" id="genre" name="Genre" required value="@Model.Genre">
+    </div>
+
+    <!-- Rating -->
+    <div class="form-group">
+        <label for="rating">Rating:</label>
+        <input type="number" step="0.1" class="form-control" id="rating" name="Rating" required value="@Model.Rating">
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea class="form-control" id="description" name="Description" required>@Model.Description</textarea>
+    </div>
+
+    <!-- Directors with JavaScript to add more input fields -->
+    <div class="form-group" id="directorGroup">
+        <label for="directors">Directors:</label>
+        <div class="input-group mb-2">
+            <input type="text" class="form-control" name="Directors" value="@string.Join(", ", Model.Directors)">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" id="addDirector">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Release Time -->
+    <div class="form-group">
+        <label for="releaseTime">Release Time:</label>
+        <input type="text" pattern="\d{4}-\d{2}-\d{2}" title="Date format should be yyyy-mm-dd" class="form-control" id="releaseTime" name="ReleaseTime" required value="@Model.ReleaseTime">
+    </div>
+
+    <!-- Image Link (Upload) -->
+    <div class="form-group">
+        <label for="imageLink">Image:</label>
+        <input type="file" class="form-control-file" id="imageLink" name="ImageFile">
+    </div>
+
+    <!-- S3Link (Video Upload) -->
+    <div class="form-group">
+        <label for="s3Link">Video:</label>
+        <input type="file" class="form-control-file" id="s3Link" name="VideoFile">
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary">Save Movie</button>
+</form>

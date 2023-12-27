@@ -1,0 +1,25 @@
+﻿<link rel="stylesheet" href="~/css/styles.css" />
+
+<div class="button-container">
+    <a href="@Url.Action("MovieList", "Movie")" class="btn btn-primary">View Movies</a>
+    <a href="@Url.Action("Login", "User")" class="btn btn-danger">Logout</a>
+</div>
+
+
+<h1>Movie Manager</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<p>Welcome back!</p>
+
+
+@section Scripts {
+    <script>
+        // Any JavaScript related to homepage functionalities can go here
+    </script>
+}

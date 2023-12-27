@@ -1,0 +1,18 @@
+﻿@model List<mvcMovie.Models.DynamoComment>
+
+<!-- Display existing comments -->
+<div class="existing-comments">
+    @foreach (var comment in Model)
+    {
+        <h5>@comment.Title</h5>
+        <p>
+            @comment.CommentText (by: @comment.UserId)
+
+            @if (User.FindFirst("UserId")?.Value == comment.UserId && DateTime.UtcNow.Subtract(comment.Timestamp).TotalHours <= 24) 
+            {
+                <a href="@Url.Action("EditComment", "Movie", new { movieId = comment.MovieId, commentId = comment.Timestamp })">Edit</a>
+            }
+
+        </p>
+    }
+</div>

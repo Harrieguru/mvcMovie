@@ -1,0 +1,77 @@
+﻿@model IEnumerable<mvcMovie.Models.Movie>
+
+<link rel="stylesheet" href="~/css/styles.css" />
+
+<div class="nav-container">
+    <div class="filter-container">
+        <label for="movieFilter">Filter by:</label>
+        <select id="movieFilter">
+            <option value=""></option>
+            <option value="genre">Genre</option>
+            <option value="rating">Rating</option>
+        </select>
+        <input type="text" id="filterValue" placeholder="Enter filter value" />
+        <button onclick="applyFilter()">Apply</button>
+    </div>
+
+    <!-- Add Movie and Comments Button -->
+    <div class="action-buttons-container">
+        <a href="@Url.Action("AddMovie", "Movie")" class="btn btn-primary">Add New Movie</a>
+        
+    </div>
+</div>
+
+<!-- Dynamic Movie Cards -->
+@foreach (var movie in Model)
+{
+    <div class="movie-card" data-genre="@movie.Genre" data-rating="@movie.Rating">
+        <img src="@movie.ImageLink" alt="@movie.Title">
+        <div> <h2>@movie.Title</h2></div>
+        <p>Description: @movie.Description</p>
+        <p>Genre: @movie.Genre</p>
+        <p>Rating: @movie.Rating</p>
+
+        <!-- Rating Form -->
+        <form method="post" action="@Url.Action("RateMovie", "Movie")">
+            <input type="hidden" name="movieId" value="@movie.MovieId" />
+            <label for="rating">Rate:</label>
+            <select name="rating">
+                <!-- Options for rating -->
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+            </select>
+            <button type="submit" class="btn btn-secondary">Rate</button>
+        </form>
+
+        <!-- Action Links -->
+        <div class="movie-action-links">
+            <a href="@movie.S3Link" class="btn btn-success" download>Download</a>
+            <a href="@Url.Action("ShowComments", "Movie", new { movieId = movie.MovieId })" class="btn btn-secondary">Comment</a>
+        </div>
+
+        <div class="movieBtns">
+            <!-- Modify Button -->
+            @if (User.FindFirst("UserId")?.Value == movie.UserId)
+            {
+                <a href="@Url.Action("ModifyMovie", "Movie", new { movieId = movie.MovieId })" class="btn btn-primary">Modify</a>
+            }
+            <!-- Delete Button -->
+            @if (User.FindFirst("UserId")?.Value == movie.UserId)
+            {
+                <form method="post" action="@Url.Action("DeleteMovie", "Movie")">
+                    <input type="hidden" name="movieId" value="@movie.MovieId" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            }
+        </div>
+    </div>
+}
+
+<script src="~/js/filter.js"></script>
